@@ -1,15 +1,37 @@
 import React, {Component} from 'react';
-import CardsContainer from './CardsContainer';
+import Decks from '../components/Decks';
 import { connect } from 'react-redux';
-class DecksContainer extends Component {
+import {newDeck, fetchDecks} from '../actions/deckActions'
+class DecksContainer extends React.Component {
+    componentDidMount(){
+        console.log('mounted')
+        //debugger
+        //this.props.fetchDecks()
+    }
+    handleSubmit = event => {
+        event.preventDefault()
+        this.props.newDeck()
+    }
     render(){
+        
         return (
             <div>
-                Deck it up!
-                <button>new deck</button>
-                <CardsContainer/>
+                <form className="newDeck" onSubmit={this.handleSubmit}>
+                    <input type="submit" value="New Deck"/>
+                </form>
+                <Decks decks={this.props.decks}/>
             </div>
         )
     }
 }
-export default DecksContainer
+const mapStateToProps = (state) => {
+    return({
+    decks: state.decks
+    })
+  }
+  const mapDispatchToProps = dispatch => {
+    return{
+    fetchDecks: () => dispatch(fetchDecks()),
+    newDeck: () => dispatch(newDeck())}
+  }
+export default connect(mapStateToProps, mapDispatchToProps) (DecksContainer);
