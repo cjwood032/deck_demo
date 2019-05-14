@@ -6,7 +6,6 @@ class Deck < ApplicationRecord
         Card.all.each do |card|
             self.deck_cards << DeckCard.new(:card => card)
         end
-        self.deck_cards.save
         return self.deck_cards
    end
 end

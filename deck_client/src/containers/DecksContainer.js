@@ -3,11 +3,7 @@ import Decks from '../components/Decks';
 import { connect } from 'react-redux';
 import {newDeck, fetchDecks} from '../actions/deckActions'
 class DecksContainer extends React.Component {
-    componentDidMount(){
-        console.log('mounted')
-        //debugger
-        //this.props.fetchDecks()
-    }
+    
     handleSubmit = event => {
         event.preventDefault()
         this.props.newDeck()

@@ -3,13 +3,12 @@ class Api::DecksController < ApplicationController
     def create
         @deck=Deck.new
         if @deck.save
-            @deck=deck.build_deck
+            @deck.build_deck
             @deck.save
             render json: @deck
         end
     end
     def index
-        binding.pry
     end
     def draw
         @cards=@deck.cards.shuffle.pop(5) #change the number if you want to draw a different amount

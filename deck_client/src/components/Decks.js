@@ -5,6 +5,7 @@ class Decks extends Component {
         const deckList = this.props.decks.map(deck => {
             return (
               <Deck
+                  key={deck.id}
                   deck={deck}  
               />
             )
